@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Calculator with Background Image</title>
+</head>
+<body style="margin: 0; padding: 0; font-family: sans-serif;">
+
+  <!-- Background image using <img> -->
+  <img src="C:\Users\HP\OneDrive\Pictures\ca_1.jpg" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; object-fit: cover;" />
+
+  <!-- Calculator box -->
+  <div style="background-color: rgba(255, 214, 231, 0.9); padding: 20px; border-radius: 20px; width: 320px; border: 4px solid #ff66b2; margin: 100px auto;">
+    <input type="text" id="display" readonly style="width: 100%; height: 60px; background: #fff0f7; font-size: 24px; text-align: right; border-radius: 10px; border: none; margin-bottom: 10px; padding: 10px;" />
+
+    <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px;">
+      <button onclick="clearDisplay()" style="padding: 15px; background: #4da6ff; color: white; border: none; border-radius: 10px;">C</button>
+      <button onclick="deleteLast()" style="padding: 15px; background: #4da6ff; color: white; border: none; border-radius: 10px;">DEL</button>
+      <button onclick="appendValue('%')" style="padding: 15px; background: #4da6ff; color: white; border: none; border-radius: 10px;">%</button>
+      <button onclick="appendValue('/')" style="padding: 15px; background: #1e90ff; color: white; border: none; border-radius: 10px;">÷</button>
+
+      <button onclick="appendValue('7')" style="padding: 15px; background: #4da6ff; color: white; border: none; border-radius: 10px;">7</button>
+      <button onclick="appendValue('8')" style="padding: 15px; background: #4da6ff; color: white; border: none; border-radius: 10px;">8</button>
+      <button onclick="appendValue('9')" style="padding: 15px; background: #4da6ff; color: white; border: none; border-radius: 10px;">9</button>
+      <button onclick="appendValue('*')" style="padding: 15px; background: #1e90ff; color: white; border: none; border-radius: 10px;">×</button>
+
+      <button onclick="appendValue('4')" style="padding: 15px; background: #4da6ff; color: white; border: none; border-radius: 10px;">4</button>
+      <button onclick="appendValue('5')" style="padding: 15px; background: #4da6ff; color: white; border: none; border-radius: 10px;">5</button>
+      <button onclick="appendValue('6')" style="padding: 15px; background: #4da6ff; color: white; border: none; border-radius: 10px;">6</button>
+      <button onclick="appendValue('-')" style="padding: 15px; background: #1e90ff; color: white; border: none; border-radius: 10px;">−</button>
+
+      <button onclick="appendValue('1')" style="padding: 15px; background: #4da6ff; color: white; border: none; border-radius: 10px;">1</button>
+      <button onclick="appendValue('2')" style="padding: 15px; background: #4da6ff; color: white; border: none; border-radius: 10px;">2</button>
+      <button onclick="appendValue('3')" style="padding: 15px; background: #4da6ff; color: white; border: none; border-radius: 10px;">3</button>
+      <button onclick="appendValue('+')" style="padding: 15px; background: #1e90ff; color: white; border: none; border-radius: 10px;">+</button>
+
+      <button onclick="appendValue('0')" style="padding: 15px; background: #4da6ff; color: white; border: none; border-radius: 10px;">0</button>
+      <button onclick="appendValue('.')" style="padding: 15px; background: #4da6ff; color: white; border: none; border-radius: 10px;">.</button>
+      <button onclick="calculateResult()" colspan="2" style="grid-column: span 2; padding: 15px; background: #0066cc; color: white; border: none; border-radius: 10px;">=</button>
+    </div>
+  </div>
+
+  <script>
+    const display = document.getElementById('display');
+
+    function appendValue(val) {
+      display.value += val;
+    }
+
+    function clearDisplay() {
+      display.value = '';
+    }
+
+    function deleteLast() {
+      display.value = display.value.slice(0, -1);
+    }
+
+    function calculateResult() {
+      try {
+        display.value = eval(display.value.replace('%', '/100'));
+      } catch {
+        display.value = 'Error';
+      }
+    }
+  </script>
+</body>
+</html>
